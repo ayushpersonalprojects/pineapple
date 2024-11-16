@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Website</title>
+    <style>
+        /* Background with hearts */
+        body {
+            background-color: #c061b6; /* Updated background color */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        .heart-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            z-index: -1;
+        }
+
+        .heart {
+            width: 30px;
+            height: 30px;
+            background-color: #7f2714;
+            position: relative;
+            transform: rotate(45deg);
+            margin: 5px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #7f2714;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 15px;
+            top: 0;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); }
+            50% { transform: translateY(-20px) rotate(45deg); }
+            100% { transform: translateY(0) rotate(45deg); }
+        }
+
+        /* Flex container to arrange images and buttons in a row */
+        .content-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Image container styling */
+        .image-container {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Heart-shaped play/stop button */
+        .heart-button {
+            width: 50px;
+            height: 50px;
+            background-color: #7f2714;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: rotate(45deg);
+            margin-top: 10px;
+        }
+
+        .heart-button:before,
+        .heart-button:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #7f2714;
+            border-radius: 50%;
+        }
+
+        .heart-button:before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart-button:after {
+            left: 25px;
+            top: 0;
+        }
+
+        /* Inner play icon */
+        .play-icon {
+            transform: rotate(-45deg);
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Message styling */
+        .message {
+            font-size: 1.2em;
+            color: rgb(134, 47, 47);
+            margin-top: 20px;
+            padding: 0 20px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Heart background -->
+    <div class="heart-background">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <!-- Add more hearts as needed -->
+    </div>
+
+    <!-- Horizontal Image and Audio Containers -->
+    <div class="content-row">
+        <!-- Image 1 with Play Button -->
+        <div class="image-container">
+            <img src="Snapchat-2031184469.jpg" alt="Special Person 1" class="main-image">
+            <div class="heart-button" onclick="togglePlay(1)">
+                <span class="play-icon" id="icon1">▶️</span>
+            </div>
+            <audio id="audio1" src="Saajna I Me Aur Main 320 Kbps.mp3"></audio>
+        </div>
+
+        <!-- Image 2 with Play Button -->
+        <div class="image-container">
+            <img src="Snapchat-1810984521.jpg".jpg" alt="Special Person 2" class="main-image">
+            <div class="heart-button" onclick="togglePlay(2)">
+                <span class="play-icon" id="icon2">▶️</span>
+            </div>
+            <audio id="audio2" src="Phir Mohabbat Murder 2 320 Kbps (2).mp3"></audio>
+        </div>
+
+        <!-- Image 3 with Play Button -->
+        <div class="image-container">
+            <img src="2024-01-25_b~Chx6TEduN09MZG9HWlplZmZlWEFZYjEuMTAyMF8xEikSGnpMR243T0xkb0daWmVmZmVYQVliMS4xMDIwGgAaADIBBEgBUB5gAQ.jpeg" alt="Special Person 3" class="main-image">
+            <div class="heart-button" onclick="togglePlay(3)">
+                <span class="play-icon" id="icon3">▶️</span>
+            </div>
+            <audio id="audio3" src="Hasi (Male Version) - Hamari Adhuri Kahani 320 Kbps.mp3"></audio>
+        </div>
+    </div>
+
+    <!-- Centered Message -->
+    <div class="message">
+        I'd visit every temple in India, offering my prayers to pray for you in my life.
+    </div>
+
+    <script>
+        function togglePlay(audioNumber) {
+            const audio = document.getElementById(`audio${audioNumber}`);
+            const icon = document.getElementById(`icon${audioNumber}`);
+
+            // Pause all other audios before playing the selected one
+            for (let i = 1; i <= 3; i++) {
+                if (i !== audioNumber) {
+                    document.getElementById(`audio${i}`).pause();
+                    document.getElementById(`icon${i}`).textContent = '▶️';
+                }
+            }
+
+            if (audio.paused) {
+                audio.play();
+                icon.textContent = '⏸️';
+            } else {
+                audio.pause();
+                icon.textContent = '▶️';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
